@@ -1,5 +1,4 @@
-import { render } from "react-dom";
+import "./styles/index.scss";
+import './hello/index.js'
 
-import App from "./components/App";
-
-render(<App />, document.getElementById("root"));
+document.body.innerHTML+='<blockquote>you there'
