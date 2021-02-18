@@ -1,12 +1,12 @@
 # Vanilla Webpack Project
 
-Git clone of (react-full-project)[https://github.com/Jimmydalecleveland/webpack-starters/tree/react-full-project], with react stripped away.
+Git clone of [react-full-project](https://github.com/Jimmydalecleveland/webpack-starters/tree/react-full-project), with react stripped away.
 
-Video leading to that project: (Webpack 5 Full Project Setup)[https://www.youtube.com/watch?v=TOb1c39m64A&list=PLmZPx_9ZF_sB4orswXdpThGMX9ii2uP7Z&index=7]
+Video leading to that project: [Webpack 5 Full Project Setup](https://www.youtube.com/watch?v=TOb1c39m64A&list=PLmZPx_9ZF_sB4orswXdpThGMX9ii2uP7Z&index=7).
 
 A template for Webpack.
 
-_NOTE: I don't know how to write webpack plugins, so my implementation is scuffed. So hot reload kinda works, but not really.
+I don't know how to write webpack plugins, so my implementation is scuffed. So hot reload kinda works, but not really.
 
 A full project setup for Vinilla js.
 
