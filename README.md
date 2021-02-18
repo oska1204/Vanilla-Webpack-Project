@@ -1,22 +1,18 @@
-# Webpack Starters for reference
+# Vanilla Webpack Project
 
-A collection of different Webpack setups for quick referencing or starting from.
+Git clone of (react-full-project)[https://github.com/Jimmydalecleveland/webpack-starters/tree/react-full-project], with react stripped away.
 
-Each branch has a different setup for the named purpose, such as `typescript` showing a TypeScript variation.
+Video leading to that project: (Webpack 5 Full Project Setup)[https://www.youtube.com/watch?v=TOb1c39m64A&list=PLmZPx_9ZF_sB4orswXdpThGMX9ii2uP7Z&index=7]
 
-_NOTE: Typically the `dist` or `public` folder is ignored in git, but for demonstrations purposes I've left it tracked._
+A template for Webpack.
 
-## `react-full-project`
+_NOTE: I don't know how to write webpack plugins, so my implementation is scuffed. So hot reload kinda works, but not really.
 
-A full project setup with React (JSX) support.
-
-It uses the Babel "automatic" runtime setting (which will be the default in Babel 8) for React 17 and up. With this setting you no longer need to import "react" in modules that just use JSX. [More on that here](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154).
+A full project setup for Vinilla js.
 
 Here are some other things this project supports:
 
 - Latest stable ES version transpiling through `@babel/preset-env` and `babel-loader`.
-- JSX syntax through `@babel/preset-react` and `babel-loader`.
-- .jsx file extensions, and importing them without adding the extension.
 - importing `.css` files into javascript files through `css-loader`.
 - Sass: `.scss` and `.sass` formats through `sass-loader` and dart sass (`sass`) package.
 - importing images (including `.svg`) through `import` syntax in javascript and `url()` syntax in css.
@@ -27,9 +23,8 @@ Here are some other things this project supports:
 ## Start using for a new project, or playground
 
 1. Clone the repo
-2. Select the branch you want
-3. Run `npm i` to install dependencies
-4. Run one of the following commands, depending on intent:
+2. Run `npm i` to install dependencies
+3. Run one of the following commands, depending on intent:
 
 ### Production Build
 
