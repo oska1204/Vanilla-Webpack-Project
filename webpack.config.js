@@ -4,19 +4,51 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const fs = require('fs');
 
-function getFiles(dir, files_) {
+function getFiles(regex, dir, files_) {
     files_ = files_ || [];
     var files = fs.readdirSync(dir);
     for (var i in files) {
         var name = dir + '/' + files[i];
         if (fs.statSync(name).isDirectory()) {
-            getFiles(name, files_);
+            getFiles(regex, name, files_);
         } else {
-            if (name.match(/script\.js$/)) files_.push(name);
+            if (name.match(regex)) files_.push(name);
         }
     }
     return files_;
 }
+
+const jsFiles = getFiles(/\/index\.js$/, 'src');
+const htmlFiles = getFiles(/\/index\.html$/, 'src');
+
+const getFilename = path => path.replace(/^src/, '.');
+const getProp = path => path.replace(/\/index\.(js|html)$/, '');
+
+const entries = {};
+jsFiles.map(path => {
+    const filename = `./${path}`;
+    const prop = getProp(path);
+    entries[prop] = filename;
+});
+
+const htmlSites = htmlFiles.map(path => {
+    const template = `./${path}`;
+    const filename = getFilename(path);
+    const prop = getProp(path);
+
+    const config = {
+        template,
+        filename,
+        chunks: [],
+    };
+
+    const item = entries[prop];
+    if (item) {
+        config.chunks.push(prop);
+    }
+
+    return new HtmlWebpackPlugin(config);
+});
 
 let mode = 'development';
 let target = 'web';
@@ -31,8 +63,7 @@ module.exports = {
     mode,
 
     entry: {
-        'index': './src/index.js',
-        'hello/index': './src/hello/index.js',
+        ...entries,
     },
 
     output: {
@@ -47,7 +78,9 @@ module.exports = {
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        options: { publicPath: '' },
+                        options: {
+                            publicPath: '',
+                        },
                     },
                     'css-loader',
                     'postcss-loader',
@@ -74,16 +107,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            filename: 'index.html',
-            chunks: ['index']
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/hello/index.html',
-            filename: 'hello/index.html',
-            chunks: ['hello/index']
-        }),
+        ...htmlSites,
     ],
 
     target,
