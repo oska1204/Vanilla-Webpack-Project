@@ -1,1 +1,3 @@
-import './index.html';
+import './style.scss'
+
+document.body.firstElementChild.innerHTML += 'telephone'
