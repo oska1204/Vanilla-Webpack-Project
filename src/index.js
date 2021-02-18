@@ -1,3 +1,3 @@
-import "./styles/index.scss";
+import '/src/styles/index.scss';
 
-document.body.innerHTML+='<blockquote>you there'
+document.body.innerHTML += '<blockquote>you there';
