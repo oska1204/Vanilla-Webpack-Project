@@ -21,18 +21,20 @@ function getFiles(regex, dir, files_) {
 const jsFiles = getFiles(/\/index\.js$/, 'src');
 const htmlFiles = getFiles(/\/index\.html$/, 'src');
 
+const getTemplate = path => `./${path}`;
 const getFilename = path => path.replace(/^src/, '.');
 const getProp = path => path.replace(/\/index\.(js|html)$/, '');
 
 const entries = {};
 jsFiles.map(path => {
-    const filename = `./${path}`;
+    const template = getTemplate(path);
     const prop = getProp(path);
-    entries[prop] = filename;
+    
+    entries[prop] = template;
 });
 
 const htmlSites = htmlFiles.map(path => {
-    const template = `./${path}`;
+    const template = getTemplate(path);
     const filename = getFilename(path);
     const prop = getProp(path);
 
