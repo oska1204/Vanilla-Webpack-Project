@@ -4,22 +4,24 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const fs = require('fs');
 
-function getFiles(regex, dir, files_) {
+function getFiles(dir, files_) {
     files_ = files_ || [];
     var files = fs.readdirSync(dir);
     for (var i in files) {
         var name = dir + '/' + files[i];
         if (fs.statSync(name).isDirectory()) {
-            getFiles(regex, name, files_);
+            getFiles(name, files_);
         } else {
-            if (name.match(regex)) files_.push(name);
+            files_.push(name);
         }
     }
     return files_;
 }
 
-const jsFiles = getFiles(/\/index\.js$/, 'src');
-const htmlFiles = getFiles(/\/index\.html$/, 'src');
+const files = getFiles('src');
+
+const jsFiles = files.filter(e => e.match(/\/index\.js$/));
+const htmlFiles = files.filter(e => e.match(/\/index\.html$/));
 
 const getTemplate = path => `./${path}`;
 const getFilename = path => path.replace(/^src/, '.');
@@ -29,7 +31,7 @@ const entries = {};
 jsFiles.map(path => {
     const template = getTemplate(path);
     const prop = getProp(path);
-    
+
     entries[prop] = template;
 });
 
