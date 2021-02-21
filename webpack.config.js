@@ -25,7 +25,7 @@ const htmlFiles = files.filter(e => e.match(/\/index\.html$/));
 
 const getTemplate = path => `./${path}`;
 const getFilename = path => path.replace(/^src/, '.');
-const getProp = path => path.replace(/\/index\.(js|html)$/, '');
+const getProp = path => path.replace(/^src\/|\.(js|html)$/g, '');
 
 const entries = {};
 jsFiles.map(path => {
