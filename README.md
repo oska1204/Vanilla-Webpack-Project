@@ -32,6 +32,12 @@ Here are some other things this project supports:
 npm run build
 ```
 
+### Production Build on Unix
+
+```bash
+npm run build-unix
+```
+
 ### Development Build
 
 ```bash
